@@ -1,7 +1,7 @@
 import { Component, OnInit, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { FcmService } from 'src/app/servicios/fcm.service';
 import { AuthService } from 'src/app/servicios/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmarnum',
@@ -22,7 +22,8 @@ export class ConfirmarnumPage implements OnInit {
   }
   constructor(private fcm: FcmService,
     private au: AuthService,
-    private activate: ActivatedRoute,) { }
+    private activate: ActivatedRoute,
+    private router:Router) { }
   
 
   ngOnInit() {
@@ -38,9 +39,9 @@ export class ConfirmarnumPage implements OnInit {
   }
   verificar(){
     if(this.codigo == this.num){
-      alert('son iguales');
+      this.router.navigate(['/tabs/tab2'])
     }else{
-      alert('no son iguales');
+      alert('Vuelva a confirmar codigo por favor');
       
     }
   }
