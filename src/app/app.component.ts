@@ -23,12 +23,13 @@ export class AppComponent {
   }
   initializeApp() {
     this.fcm.subscribeToTopic('marketing');
+    //para incluir para ios colocar un if
     this.fcm.onNotification().subscribe(data => {
+      //if(this.platform.is('ios'))
       if (data.wasTapped) {
         console.log("Received in background");
         this.route.navigate(data.landing_page)
       } else {
-        //this.presentToast(data.omar,data.jaime)
         this.presentAlertConfirm(data.omar, data.jaime, data.landing_page)
         // alert(data.omar+" "+data.jaime+" "+data.landing_page)
         //this.route.navigate(data.landing_page)

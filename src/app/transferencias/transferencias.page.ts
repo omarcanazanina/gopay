@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService , usu } from '../servicios/auth.service';
 import { ModalController, LoadingController } from '@ionic/angular';
 import { UsuarioComponent } from '../componentes/usuario/usuario.component';
-import { Contacts} from '@ionic-native/contacts/ngx';
+import { Contacts, Contact} from '@ionic-native/contacts/ngx';
 import { Router } from '@angular/router';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
@@ -21,6 +21,7 @@ export class TransferenciasPage implements OnInit {
   sub
   uu:any
   items: any
+  mycontacts:Contact[]=[]
   constructor(private au: AuthService,
      public modal: ModalController,
      private contactos:Contacts,
@@ -28,7 +29,8 @@ export class TransferenciasPage implements OnInit {
      private route:Router,
      private socialShare:SocialSharing
      ) {
-      this.getContactos()
+       this.loadContacts()
+     // this.getContactos()
    }
 
   getItems(ev: any) {
@@ -60,8 +62,19 @@ export class TransferenciasPage implements OnInit {
       }
     }).then((modal) => modal.present())
   }
-
- 
+//otro metodo para import contactos
+ loadContacts(){
+   let options ={
+     filter:'',
+     multiple:true,
+     hasPhoneNumber:true
+   }
+   this.contactos.find(['*'],options).then((contactos : Contact[])=>{
+     this.mycontacts=contactos
+     alert(JSON.stringify(this.mycontacts))
+     alert(this.mycontacts)
+   })
+ }
 
   getContactos(){
     let load=this.presentLoading()
