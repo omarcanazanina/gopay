@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="card" class="icono"></ion-icon>Ingreso de Tarjeta
+    </ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <b>Tarjetas </b>
+  <ion-list>
+    <ion-item *ngFor="let dato of tarjetas ">
+      <ion-avatar>
+        <ion-icon name="card" class="icono"></ion-icon>
+      </ion-avatar>
+      <p>****{{dato.numerito}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+      <ion-avatar>
+        <ion-icon name="cash" class="balance"></ion-icon>
+      </ion-avatar>
+      <p>Balance App.</p><b>{{usuario.cajainterna}}Bs.</b>
+    </ion-item>
+    <br><br>
+    <ion-item routerLink="/nuevatarjeta">
+      <p style="color: blue">+ Ingresar nueva tarjeta</p>
+    </ion-item>
+    <ion-item routerLink="/moverdinero">
+      <p style="color: blue">> Mover</p>
+    </ion-item>
+  
+</ion-content>

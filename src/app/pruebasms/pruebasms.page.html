@@ -1,0 +1,29 @@
+  
+<ion-content>
+    
+
+    <ion-list class="ion-padding">
+          <ion-item lines="none" text-center>
+              <ion-label>prueba de teléfono </ion-label>
+            </ion-item>
+            <ion-item lines="none" >
+              <ion-input type="number"  [(ngModel)]="phoneNumber" class="input-registro" text-center></ion-input>
+            </ion-item>
+               <ul>
+                  <li>
+                    El número que proporciones servirá para que tu y tus contactos puedan realizar transacciones.
+                  </li>
+                  <li>
+                    Tus amigos y contactos podran encontrarte mediante el número que proporciones
+                  </li>
+                </ul>
+      </ion-list>
+      <div id="recaptcha-container1"></div>
+        <div class="btn-siguiente" text-center>
+            <ion-button  (click)="signIn(phoneNumber)">
+                Registrarse
+            </ion-button>
+        </div>
+  
+  </ion-content>
+  

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Agregar tarjeta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-label>Número de tarjeta</ion-label>
+  <ion-item>
+    <input class="input" [textMask]="{mask: mask}" [(ngModel)]="numero" type="text" placeholder="Ingrese número" />
+  </ion-item>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label>Fecha de Vto.</ion-label>
+        <ion-item>
+          <input class="input" [textMask]="{mask: mask1}" [(ngModel)]="vencimiento" type="text" placeholder="MM/AA" />
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-label>Código Seguridad</ion-label>
+        <ion-item>
+          <input class="input" [textMask]="{mask: mask2}" [(ngModel)]="cvv" type="text" placeholder="123" />
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-img src="./assets/bolivia.jpg" width="1%" ></ion-img>-->
+  
+ <ion-list>
+    <ion-item color="light">
+      <ion-label>País</ion-label>
+      <ion-select [(ngModel)]="pais" [interfaceOptions]="customPopoverOptions" interface="popover"
+        placeholder="Seleccione">
+        <ion-select-option value="bolivia"> Bolivia</ion-select-option>
+        <ion-select-option value="argentina">Argentina</ion-select-option>
+        <ion-select-option value="peru">Perú</ion-select-option>
+        <ion-select-option value="chile">Chile</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+ 
+  <ion-button expand="full" (click)="guardartarjeta()"> Guardar</ion-button>
+</ion-content>

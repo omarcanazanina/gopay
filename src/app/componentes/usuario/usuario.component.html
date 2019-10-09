@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Transferir a:{{usu.nombre}} </ion-title>
+      <ion-button slot="start" fill="clear" (click)="closeUsuario()"><ion-icon class="icono" name="close"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color=primary> 
+
+    <ion-list>
+        <ion-item>
+          <ion-label stacked>Monto:</ion-label>
+          <ion-input type="number" [(ngModel)]="monto"  placeholder="Ingrese Monto" #focus></ion-input>
+        </ion-item><br>
+        <ion-item>
+              <ion-label stacked>Mensaje:</ion-label>
+              <ion-input type="text" [(ngModel)]="mensaje" placeholder="Ingrese descripcion"></ion-input>
+        </ion-item>
+    </ion-list>
+      <ion-button color="secondary" expand="full" class="boton"  (click)="presentAlertPrompt()" >Transferir</ion-button>
+      
+  </ion-content>

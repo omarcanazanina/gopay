@@ -1,0 +1,80 @@
+
+.titulo{
+    color: #C0C0C0;
+}
+.card{
+    width: 80%;
+    float: left;
+    background: #fff                    
+}
+.card1{
+    width: 80%;
+    background-color: #dcf8c6;
+    float: right;
+    top: -10%;
+}
+.letra{
+   font-size: 150%;
+}
+.letras{
+    color:white;
+}
+.letras1{
+    color: black;
+}
+.card2{
+    width: 80%;
+    float:right;
+    background-color: #dcf8c6;
+}
+.card11{
+    width: 80%;
+    float: left;
+    top:-10%;
+}
+
+
+.cards{
+     position: absolute;
+     bottom:5px;
+}
+
+ .mas{
+    position: absolute;
+    left: 80%;
+    top: 60%;
+}
+
+ion-footer{
+    position: absolute !important;
+    bottom:0% !important;
+}
+ion-grid{
+    background: cornflowerblue;
+    color: #fff
+}
+.col-buttom{
+    border-right: 1px solid rgb(231, 230, 230);
+}
+.contenido-historial{
+    padding-bottom: 150px !important;
+    background: #eaebec !important
+}
+ion-list{
+    background: #eaebec !important
+}
+
+.div-noting{
+    height: 100%;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+    
+}
+.prompt_alert .alert-input{
+    size: 30px !important;
+    caret-color: #F58282;
+    font-size: 30px !important;
+    text-align: center
+}
+

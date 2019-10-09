@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-list class="ion-padding">
+    <ion-item lines="none" text-center>
+      <ion-label>Codigo de Verificación </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="number" [(ngModel)]="codigo" class="input-registro" text-center></ion-input>
+    </ion-item>
+    <ul>
+      <li>
+        El número que proporciones servirá para que tu y tus contactos puedan realizar transacciones.
+      </li>
+      <li>
+        Tus amigos y contactos podran encontrarte mediante el número que proporciones
+      </li>
+    </ul>
+  </ion-list>
+  <div class="btn-siguiente" text-center>
+    <ion-button (click)="generar()">
+      Generar codigo
+    </ion-button>
+    <ion-button (click)="verificar(codigo)">
+      Confirmar
+    </ion-button>
+  </div>
+
+</ion-content>

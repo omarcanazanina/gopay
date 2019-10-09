@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ingreso de datos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/index"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div id="recaptcha-container"></div>
+<!-- para los dos-->
+    <ion-item>
+        <ion-label position="floating"> Nro. Telefonico o correo</ion-label>
+        <ion-input type="text" [(ngModel)]="dato" #focus></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="pass" [type]="password_type" name="contraseña" #input></ion-input>
+          <ion-button (click)="togglePasswordMode()" slot="end" fill="clear">
+            <ion-icon name="eye" item-right slot="end"></ion-icon>
+          </ion-button>
+        </ion-item>
+      <ion-button expand="full"  (click)="verificar(dato)">Ingresar</ion-button>
+<!--
+     <ion-list>
+      <ion-item>
+        <ion-label> Nro. Telefonico</ion-label>
+        <ion-input type="text" [(ngModel)]="phoneNumber" #focus></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" name="contraseña"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="signIn(phoneNumber)">
+        prueba
+      </ion-button>
+
+
+
+<div *ngIf="con == 'correo'">
+    <h5>con correo</h5>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating"> Correo</ion-label>
+        <ion-input [(ngModel)]="correo" type="text" name="correo" #focus></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="pass" [type]="password_type" name="contraseña" #input></ion-input>
+        <ion-button (click)="togglePasswordMode()" slot="end" fill="clear">
+          <ion-icon name="eye" item-right slot="end"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" (click)='login()'> ingresar</ion-button>
+</div>
+
+
+-->
+ 
+
+
+</ion-content>

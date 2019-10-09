@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-item color="primary" lines="none">
+        <ion-icon name="person"></ion-icon>
+        <ion-title>Mi perfil</ion-title>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+  <ion-list>
+      <ion-item lines="none" >
+          <ion-icon name="person" slot="end"></ion-icon>
+          {{usuario.nombre}}
+      </ion-item>
+      <ion-item lines="none" >
+          <ion-icon name="md-call" slot="end"></ion-icon>
+          {{usuario.telefono}}
+      </ion-item>
+      <ion-item lines="none" >
+          <ion-icon name="md-mail" slot="end"></ion-icon>
+          {{usuario.correo}}
+      </ion-item>
+      <ion-item lines="none" (click)=' presentAlertConfirm()'>
+          <ion-icon name="md-log-in" slot="end"></ion-icon>
+          Cerrar session
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  

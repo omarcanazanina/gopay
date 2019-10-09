@@ -1,0 +1,36 @@
+<ion-content class="ion-no-padding" text-center>
+
+  <ion-content class="ion-padding">
+    <h1 class="ion-padding">GoPay</h1>
+    <img src="../../assets/moneda.svg" class="logo">
+
+  </ion-content>
+  <div class="link">
+    <ion-button routerLink="/index2" expand="block" fill="clear">
+      Iniciar sesión
+    </ion-button>
+    <!--
+    <ion-button routerLink="/registrate" expand="block" fill="clear">
+      Registrate
+    </ion-button>
+ -->
+    <ion-button (click)="ingreso()" expand="block" fill="clear">
+      Registrate
+    </ion-button>
+
+    <ion-button (click)="ramdom()" expand="block" fill="clear">
+      generar
+    </ion-button>
+
+    <ion-button (click)="sms()" expand="block" fill="clear">
+      sms
+    </ion-button>
+
+    <ion-button expand="block" color="danger" shape="round" (click)="doGoogleLogin()">
+      Log with Google
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+    </ion-button>
+
+  </div>
+
+</ion-content>

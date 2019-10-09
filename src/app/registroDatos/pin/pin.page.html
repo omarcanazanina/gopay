@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-list class="ion-padding">
+      <ion-item lines="none" text-center>
+          <ion-label> PIN  </ion-label>
+        </ion-item>
+      <ion-item lines="none" text-center >
+          <input class="input-pin" type="tel" [textMask]="{mask: mask}" [(ngModel)]="pin" placeholder="_ _ _ _"/>
+        </ion-item>
+        <ul>
+            <li>
+                 El número que proporciones servirá para que tu y tus contactos puedan realizar transacciones.
+            </li>
+            <li>
+              Tus amigos y contactos podran encontrarte mediante el número que proporciones
+            </li>
+          </ul>
+</ion-list>
+<div class="btn-siguiente" text-center>
+  <ion-button (click)="crear()">
+      Siguiente
+  </ion-button>
+</div>
+</ion-content>

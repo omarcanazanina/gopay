@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registrate</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/index"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label position="floating" >Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="miModelo.soloTexto" name="soloTexto" minlength="3" #soloTexto="ngModel" placeholder="Solo un nombre" pattern="[a-zA-Z]*"
+      required #focus></ion-input>
+  </ion-item>
+ <!--<p ion-text color="danger" *ngIf="soloTexto.errors">ERRORES: {{ soloTexto.errors | json}}</p>--> 
+
+  <ion-item>
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input type="text" [(ngModel)]="miModelo.campo" name="campo" #campo="ngModel" placeholder="xxxxx@gmail.com" email required></ion-input>
+  </ion-item>
+  <!-- <p ion-text color="danger" *ngIf="campo.errors">ERRORES: {{ campo.errors | json}}</p>--> 
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="miModelo.contrasena" name="contrasena" placeholder="minimo 6 caracteres" #contrasena="ngModel" required
+      minlength="6" ></ion-input>
+  </ion-item>
+  <!-- <p ion-text color="danger" *ngIf="contrasena.errors">ERRORES: {{ contrasena.errors | json}}</p>-->
+
+  <ion-item>
+    <ion-label position="floating">Confirmar contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="miModelo.confirmContrasena" name="confirmContrasena" placeholder="confirmar"
+      #confirmContrasena="ngModel" required [equalTo]="contrasena" required></ion-input>
+  </ion-item>
+ <!-- <p ion-text color="danger" *ngIf="confirmContrasena.errors">ERRORES: {{ confirmContrasena.errors | json}}</p>--> 
+
+  <ion-item>
+    <ion-label position="floating">Teléfono</ion-label>
+    <ion-input type="text" [(ngModel)]="miModelo.solonumero" name="solonumero" #solonumero="ngModel" minlength="8" maxlength="8" placeholder="70000000"
+      required digits></ion-input>
+  </ion-item>
+  <!--<p ion-text color="danger" *ngIf="solonumero.errors">ERRORES: {{ solonumero.errors | json}}</p> -->
+  <ion-item>
+    <ion-label position="floating">PIN movimientos</ion-label>
+    <ion-input type="text" [(ngModel)]="miModelo.solonumero1" name="solonumero1" #solonumero1="ngModel" minlength="4" maxlength="4" placeholder="1234"
+      required digits></ion-input>
+  </ion-item>
+  <!--<p ion-text color="danger" *ngIf="solonumero1.errors">ERRORES: {{ solonumero.errors | json}}</p> -->
+  <ion-input [(ngModel)]="cajainterna" type="number" name="cajainterna" hidden></ion-input>
+  <ion-input [(ngModel)]="cajabancaria" type="number" name="cajabancaria" hidden></ion-input>
+  <ion-button expand="full" (click)='crear()'> registrarse</ion-button>
+</ion-content>

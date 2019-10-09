@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mover Saldo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="dato1">
+      <ion-list-header>
+        <ion-label>De:</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="cash" class="balance"></ion-icon>
+        <ion-label>Balance App. {{usuario.cajainterna}} Bs.</ion-label>
+        <ion-radio slot="start" value={{usuario.cajainterna}} checked></ion-radio>
+      </ion-item>
+      <ion-item *ngFor="let dato of tarjetas ">
+        <ion-icon name="card" class="icono"></ion-icon>
+        <ion-label>****{{dato.numerito}}</ion-label>
+        <ion-radio slot="start" value="{{dato.numero}}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-radio-group [(ngModel)]="dato2">
+      <ion-list-header>
+        <ion-label>a:</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="cash" class="balance"></ion-icon>
+        <ion-label>Balance App. {{usuario.cajainterna}} Bs.</ion-label>
+        <ion-radio slot="start" value="{{usuario.cajainterna}}" checked></ion-radio>
+      </ion-item>
+      <ion-item *ngFor="let dato of tarjetas ">
+        <ion-icon name="card" class="icono"></ion-icon>
+        <ion-label>****{{dato.numerito}}</ion-label>
+        <ion-radio slot="start" value="{{dato.numero}}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  <ion-button expand="full" (click)="mover()"> Mover</ion-button>
+
+  <!--
+  <ion-list>
+      <ion-radio-group>
+        <ion-list-header>
+          <ion-label>A:</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-icon name="cash" class="balance"></ion-icon>
+          <ion-label>Balance App. {{usuario.cajainterna}} Bs.</ion-label>
+          <ion-radio [(ngModel)]="caja" slot="start" value="llego esto" checked></ion-radio>
+        </ion-item>
+        <ion-item *ngFor="let dato of tarjetas " >
+            <ion-icon name="card" class="icono"></ion-icon>
+          <ion-label>****{{dato.numerito}}</ion-label>
+          <ion-radio [(ngModel)]="tarjeta" slot="start" value="{{dato.numero}}"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    -->
+
+
+  <!--
+  <br>
+<div class="a" routerLink="/moverbancoapp"> 
+  <div class="textito"><h1> Banco a App</h1> </div>
+</div>
+<br>
+<div class="a" routerLink="/moverappbanco">
+    <div class="textito"><h1> App a Banco</h1> </div>
+</div>
+-->
+
+</ion-content>

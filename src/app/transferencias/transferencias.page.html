@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-searchbar color="primary" (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   
+
+  <ion-label>
+    <ion-list>
+      <ion-item *ngFor="let usu of items " (click)="openusu(usu)">
+        <p>{{usu.nombre}}</p>
+        <ion-icon class="ir" name="arrow-forward"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-label>
+
+  <ion-list>
+    <!--<ion-item *ngFor="let usu of ContactsTrue" lines="none" (click)="openusu(usu)">  hacer transferencia directa-->
+    <ion-item *ngFor="let usu of ContactsTrue" lines="none" (click)="enviadatos(usu)" >
+      <ion-avatar item-start>
+          <img src="../../assets/moneda.svg" >
+      </ion-avatar>
+      <ion-label class="label-alumnos">{{usu.displayName}}
+        <p> {{usu.numero}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    Invitar amigos
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let u of ContactsNone" lines="none">
+      <ion-avatar item-start>
+        <ion-icon name="md-contact" size="large"></ion-icon>
+      </ion-avatar>
+      <ion-label class="label-alumnos">{{u.displayName}}
+        <p>{{u.numero}}</p>
+      </ion-label>
+      <ion-button (click)="invitar()" slot="end" shape="round">
+        Invitar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

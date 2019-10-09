@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mover saldo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/moverdinero"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <b>Se movera de:</b>
+  <ion-item *ngIf="cadena1 == 'Balance'">
+    <ion-icon name="cash" class="balance"></ion-icon>
+    <ion-label>Balance App.</ion-label>
+  </ion-item>
+  <ion-item *ngIf="cadena1 != 'Balance'">
+    <ion-icon name="card" class="icono"></ion-icon>
+    <ion-label>{{cadena1}}</ion-label>
+  </ion-item>
+  <b>a:</b>
+  <ion-item *ngIf="cadena2 == 'Balance'">
+    <ion-icon name="cash" class="balance"></ion-icon>
+    <ion-label>Balance App.</ion-label>
+  </ion-item>
+  <ion-item *ngIf="cadena2 != 'Balance'">
+    <ion-icon name="card" class="icono"></ion-icon>
+    <ion-label>{{cadena2}}</ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label class="texto">Bs.</ion-label>
+    <ion-input type="number" class="texto" [(ngModel)]="monto" name="monto" #focus></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="mover()"> OK</ion-button>
+</ion-content>

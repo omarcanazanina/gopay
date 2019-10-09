@@ -1,0 +1,155 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+      </ion-buttons>
+    <ion-item lines="none" color="primary">
+        <ion-icon name="compass" slot="start"></ion-icon>
+      <ion-label>Balance</ion-label>
+    </ion-item>
+   
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="ocultara == 0">
+    <p class="nombre">{{nombre}}</p>
+    <p class="caja">{{cajareal}} Bs. </p>
+    <div class="botones">
+      <ion-button color="success" [routerLink]="['/cargarsaldo',dato]">Cargar</ion-button><br>
+      <ion-button color="medium" [routerLink]="['/retirarsaldo',dato2]">Retirar</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+ <!--
+<div *ngIf="ocultara == 1">
+    <div>
+      <br><br><br><br>
+    </div>
+    <ion-card class="card">
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col size="4">
+            <p class="tex">{{nombre}}</p>
+          </ion-col>
+          <ion-col size="4">
+            <p class="tex">{{cajareal}} Bs.</p>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col size="4">
+            <ion-button color="success" size="small" [routerLink]="['/cargarsaldo',dato]">Cargar</ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button color="medium" size="small" [routerLink]="['/retirarsaldo',dato2]">Retirar</ion-button>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
+      <div>
+          <ion-segment [(ngModel)]="movimientos">
+            <ion-segment-button  value="balance"class="balance" (click)="ocultar()">
+              Balance
+            </ion-segment-button>
+            <ion-segment-button value="ingresos" class="ingreso" (click)="ocultar()">
+              Ingresos
+            </ion-segment-button>
+            <ion-segment-button value="egresos" class="egreso" (click)="ocultar()">
+              Egresos
+            </ion-segment-button>
+          </ion-segment>
+          <ion-segment>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="balance">{{balance1}} Bs</ion-col>
+                <ion-col class="ingreso">{{ingreso1}} Bs.</ion-col>
+                <ion-col class="egreso">{{egreso1}} Bs.</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-segment>
+        </div>
+    </ion-card>
+  </div>
+ --> 
+ <!--
+<div>
+    <ion-segment [(ngModel)]="movimientos">
+      <ion-segment-button  class="balance" value="balance" (click)="ocultar()">
+        Balance
+      </ion-segment-button>
+      <ion-segment-button value="ingresos" class="ingreso" (click)="ocultar()">
+        Ingresos
+      </ion-segment-button>
+      <ion-segment-button value="egresos" class="egreso" (click)="ocultar()">
+        Egresos
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="movimientos" class="segment">
+    <ion-list *ngSwitchCase="'balance'">
+      <ion-card style="text-align: right">
+        <h5><b>Total:{{balance1}} Bs.</b> </h5>
+      </ion-card>
+      <ion-label>
+        <ion-list *ngFor="let usu of ordenado ">
+          <ion-item *ngIf="usu.identificador == '1'" with="90%" (click)="detalleingresoegreso(usu)">
+            <p class="ingreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
+          </ion-item>
+          <ion-item *ngIf="usu.identificador == '0'" (click)="detalleegreso(usu)">
+            <p class="egreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
+          </ion-item>
+          <ion-icon class="ir" name="arrow-forward"></ion-icon>
+        </ion-list>
+      </ion-label>
+      <ion-button expand="block" fill="outline" slot="arrow-up" name="arrow-up" (click)="ScrollToTop()">
+        <ion-icon name="arrow-up"></ion-icon>
+        Subir
+      </ion-button>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'ingresos'">
+      <ion-card style="text-align: right">
+        <h5><b>Total:{{ingreso1}} Bs.</b> </h5>
+      </ion-card>
+      <ion-label>
+        <ion-list>
+          <ion-item *ngFor="let usu of consulta" (click)="detalleingresoegreso(usu)">
+            <p class="ingreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
+            <ion-icon class="ir" name="arrow-forward"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-label>
+      <ion-button expand="block" fill="outline" slot="arrow-up" name="arrow-up" (click)="ScrollToTop()">
+        <ion-icon name="arrow-up"></ion-icon>
+        Subir
+      </ion-button>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'egresos'">
+      <ion-card style="text-align: right">
+        <h5><b>Total:{{egreso1}} Bs.</b> </h5>
+      </ion-card>
+      <ion-label>
+        <ion-list>
+          <ion-item *ngFor="let usu of datito " (click)="detalleegreso(usu)">
+            <p class="egreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
+            <ion-icon class="ir" name="arrow-forward"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-label>
+      <ion-button expand="block" fill="outline" slot="arrow-up" name="arrow-up" (click)="ScrollToTop()">
+        <ion-icon name="arrow-up"></ion-icon>
+        Subir
+      </ion-button>
+    </ion-list>
+  </div>
+ -->
+  
+
