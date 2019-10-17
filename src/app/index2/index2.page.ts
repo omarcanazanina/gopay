@@ -110,6 +110,9 @@ export class Index2Page implements OnInit {
         })
       }).catch(err => {
         console.log('tamos en el else login');
+        load.then(loading => {
+          loading.dismiss()
+        })
         this.fauth.ingresoinvalido()
       });
       //}

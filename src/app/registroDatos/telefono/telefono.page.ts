@@ -17,6 +17,7 @@ export class TelefonoPage implements OnInit {
   pin = null
   cajainterna = 0
   badge = 0
+  control = 0
   eltoken:any
   public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
 
@@ -27,7 +28,8 @@ export class TelefonoPage implements OnInit {
     public fire: AngularFirestore,
     public au: AuthService,
     private loadingController: LoadingController, 
-    private fcm: FCM) { }
+    private fcm: FCM, private nav:NavController
+    ) { }
 
   ngOnInit() {
     this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container1',{
@@ -37,10 +39,12 @@ export class TelefonoPage implements OnInit {
     this.email = this.activate.snapshot.paramMap.get('email')
     this.contrasena = this.activate.snapshot.paramMap.get('contrasena')
     this.pin = this.activate.snapshot.paramMap.get('pin')
+
   }
   signIn(phoneNumber: number) {
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+591" + phoneNumber;
+    const phoneNumber1 = phoneNumber.toString();
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
       .then(async confirmationResult => {
         const alert = await this.alertCtrl.create({
@@ -58,7 +62,7 @@ export class TelefonoPage implements OnInit {
                   .then((result) => {
                     let load = this.presentLoading();
                      this.fcm.getToken().then(token => {
-                       this.au.crearcontel(result.user.uid,this.email,this.contrasena,this.pin,this.nombre,phoneNumberString,this.cajainterna,token,this.badge)
+                       this.au.crearcontel(result.user.uid,this.email,this.contrasena,this.pin,this.nombre,phoneNumber1,this.cajainterna,token,this.badge)
                          this.au.creocorrecto();
                          load.then(loading => {
                            loading.dismiss()
@@ -88,12 +92,13 @@ export class TelefonoPage implements OnInit {
     await loading.present();
     return loading
   }
-  verificar(phoneNumber){
+  verificar(phoneNumber:number){
     this.fcm.getToken().then(token => {
-      this.au.crear(this.email,this.contrasena,this.pin,this.nombre,phoneNumber,this.cajainterna,token,this.badge)
-      this.au.creocorrecto();
+      const phoneNumberString1 = phoneNumber.toString()
+      this.au.crear(this.email,this.contrasena,this.pin,this.nombre,phoneNumberString1,this.cajainterna,token,this.badge)
+      //this.au.creocorrecto();
       this.eltoken=token
-      this.route.navigate(['/confirmarnum',this.eltoken])
+      this.nav.navigateRoot(['/confirmarnum',this.eltoken])
     })
   }
 }

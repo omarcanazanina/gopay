@@ -6,7 +6,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ToastController, AlertController } from '@ionic/angular';
-import { reject } from 'q';
 
 
 export interface usu {

@@ -11,6 +11,11 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 
 export class Tab2Page {
+  //lo nuevo
+  encodeData: any;
+  scannedData: {};
+  barcodeScannerOptions: BarcodeScannerOptions;
+//
 
   public data = {
     text: ""
@@ -20,6 +25,12 @@ export class Tab2Page {
     private route: Router,
     public fire: AngularFirestore,
     private au: AuthService) {
+      //lo nuevo
+      this.barcodeScannerOptions = {
+        showTorchButton: true,
+        showFlipCameraButton: true
+      };
+      //
   }
   cont
   correo: string;
@@ -39,13 +50,18 @@ export class Tab2Page {
     this.uu = this.au.pruebita();
     this.au.recuperaundato(this.uu).subscribe(usuario => {
       this.usuario = usuario;
-      //this.caja = parseFloat(this.usuario.cajainterna)
-      //this.caja1 = this.caja.toFixed(2)
     })
   }
 
   scan() {
     this.option = {
+      preferFrontCamera: false,
+      showFlipCameraButton: true,
+      showTorchButton: true,
+      torchOn: false,
+      resultDisplayDuration: 500,
+      formats: 'QR_CODE,PDF_417 ',
+      orientation: 'landscape',
       prompt: "por favor lea el codigo QR"
     }
     this.bar.scan(this.option).then(barcodeData => {

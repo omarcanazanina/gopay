@@ -48,6 +48,9 @@
         <edit-config file="*-Info.plist" mode="merge" target="NSContactsUsageDescription">
             <string>need contacts access to search friends</string>
         </edit-config>
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>Camera is used for uploading activation photos and profile pictures.</string>
+        </edit-config>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />

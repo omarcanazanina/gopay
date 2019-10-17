@@ -20,6 +20,7 @@ export class ConfirmarnumPage implements OnInit {
     telefono: "",
     uid: ""
   }
+
   constructor(private fcm: FcmService,
     private au: AuthService,
     private activate: ActivatedRoute,
@@ -28,6 +29,7 @@ export class ConfirmarnumPage implements OnInit {
 
   ngOnInit() {
     this.token = this.activate.snapshot.paramMap.get('token')
+
   }
 
   generar() {

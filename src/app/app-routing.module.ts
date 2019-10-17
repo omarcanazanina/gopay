@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'recibedinero', loadChildren: './recibedinero/recibedinero.module#RecibedineroPageModule' },
   { path: 'index', loadChildren: './index/index.module#IndexPageModule'  ,canActivate:[NologinGuard]},
   { path: 'index2', loadChildren: './index2/index2.module#Index2PageModule' ,canActivate:[NologinGuard]},
-  { path: 'indexconfirmacion', loadChildren: './indexconfirmacion/indexconfirmacion.module#IndexconfirmacionPageModule' ,canActivate:[NologinGuard]},
+  { path: 'indexconfirmacion', loadChildren: './indexconfirmacion/indexconfirmacion.module#IndexconfirmacionPageModule' , canActivate:[NologinGuard]},
   { path: 'registrate', loadChildren: './registrate/registrate.module#RegistratePageModule' },
   { path: 'cobroqr', loadChildren: './cobroqr/cobroqr.module#CobroqrPageModule' },
   { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },

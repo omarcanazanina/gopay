@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase';
 import {LoadingController} from '@ionic/angular';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
+//import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Router } from '@angular/router';
 import { FcmService } from '../servicios/fcm.service';
+import { AuthService } from '../servicios/auth.service';
 //import { firebaseConfig } from '../app.module';
 
 @Component({
@@ -17,15 +18,27 @@ export class IndexPage implements OnInit {
   numero
   constructor(public db: AngularFireDatabase,
      private loadingController: LoadingController,
-     private googlePlus:GooglePlus,
+    // private googlePlus:GooglePlus,
      private route: Router,
+     private au: AuthService,
      private fcm: FcmService
    ) { }
   
   ngOnInit() {
   }
 
-
+  codigo(num) {
+    let nuevo = num.replace("+591", "").trim()
+    return nuevo
+  }
+  //metodo verificausuario reconoce numeros y metodo codigo reconoce string
+  prueba() {
+    const bb="70434823"
+    const aa=bb.replace("+591", "").trim()
+    //const aa=bb.replace("","+591").trim()
+    console.log(aa);
+  }
+/*
    //FUNCIONES DE LOGUEO PON GOOGLE
    async doGoogleLogin(){
     const loading = await this.loadingController.create({
@@ -46,7 +59,7 @@ export class IndexPage implements OnInit {
         loading.dismiss();
       })
   }
-
+*/
   async presentLoadin(loading) {
     return await loading.present();
   }
@@ -54,15 +67,5 @@ export class IndexPage implements OnInit {
   ingreso(){
     this.route.navigate(['/nombre'])
   }
-  ramdom(){
-    this.route.navigate(['/confirmarnum'])
-  this.numero=Math.floor(Math.random() * (999999 - 100000 ) + 1);
-   console.log('este es el ramdom'+' '+this.numero);
-  }
 
-  sms(num){
-    num=Math.floor(Math.random() * (999999 - 100000 ) + 1);
-    this.fcm.notificacionforToken("GoPay"," prueba scan Acaba de recibir el pago de  " +num+ "Bs. de "+'nombre usu'+" ",'cFraQK0mjZs:APA91bFdtCrYGKYRyi9Gt0MRH_HIAdg_cBhQjsU92SW1iyix7Xt0coRC0SAxgFp58aDVGMusWcs_W69vW0hxqiGxUIZoPvJeNwxfKqMZE_0Iw5pzccNKDlXJ9dMwuFzO_4dliZZ6gGRl','Qf8gWC5NZTS49GhEHRA6XpErZAi2',"/tabs/tab2")
-    alert('se envio lan notificacion')
-  }
 }

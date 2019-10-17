@@ -26,7 +26,7 @@ import { Firebase } from '@ionic-native/firebase/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { Contacts } from '@ionic-native/contacts/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
+//import { GooglePlus } from '@ionic-native/google-plus/ngx';
 //mascaras de inputs
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
@@ -73,7 +73,7 @@ export const firebaseConfig = {
     LocalNotifications,
     FCM,
     Contacts,
-    GooglePlus,
+   // GooglePlus,
     AngularFirestore,
     SocialSharing,
     InAppBrowser

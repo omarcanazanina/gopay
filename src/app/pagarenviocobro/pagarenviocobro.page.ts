@@ -47,6 +47,9 @@ export class PagarenviocobroPage implements OnInit {
   monto
   detalle
 
+  //
+  numerosincodigo
+  //
   @ViewChild("content", { static: true }) content: IonContent
   constructor(private activatedRoute: ActivatedRoute,
     private au: AuthService,
@@ -65,7 +68,9 @@ export class PagarenviocobroPage implements OnInit {
   ngOnInit() {
     this.numero = this.activatedRoute.snapshot.paramMap.get('id')
     this.nombresito = this.activatedRoute.snapshot.paramMap.get('nombre')
-    this.au.verificausuarioActivo(this.numero).subscribe(cont => {
+    //quitamos el codigo +591
+    this.numerosincodigo=this.numero.replace("+591", "").trim()
+    this.au.verificausuarioActivo(this.numerosincodigo).subscribe(cont => {
       this.cobrador = cont[0]
       this.uu = this.au.pruebita();
       this.au.recuperaundato(this.uu).subscribe(usuario => {
