@@ -30,6 +30,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 //mascaras de inputs
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { PipesModule } from './pipes/pipes.module';
 
 
 export const firebaseConfig = {
@@ -61,6 +62,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     NgxQRCodeModule,
+    PipesModule,
     AngularFireAuthModule,
   ],
 

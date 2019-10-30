@@ -27,17 +27,6 @@ export class IndexPage implements OnInit {
   ngOnInit() {
   }
 
-  codigo(num) {
-    let nuevo = num.replace("+591", "").trim()
-    return nuevo
-  }
-  //metodo verificausuario reconoce numeros y metodo codigo reconoce string
-  prueba() {
-    const bb="70434823"
-    const aa=bb.replace("+591", "").trim()
-    //const aa=bb.replace("","+591").trim()
-    console.log(aa);
-  }
 /*
    //FUNCIONES DE LOGUEO PON GOOGLE
    async doGoogleLogin(){

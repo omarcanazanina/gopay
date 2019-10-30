@@ -100,6 +100,11 @@ export class Index2Page implements OnInit {
             load.then(loading => {
               loading.dismiss()
             })
+            //prueba
+            this.fauth.recuperaundato(res.user.uid).subscribe(dato=>{
+             alert(JSON.stringify(dato))
+            })
+            //
             this.router.navigate(['/indexconfirmacion']);
             load.then(l => {
               l.dismiss()

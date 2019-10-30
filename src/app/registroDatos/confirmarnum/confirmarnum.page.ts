@@ -12,7 +12,8 @@ export class ConfirmarnumPage implements OnInit {
   codigo: any
   uu:any
   num:any
-  token='dtnHrMFMyMc:APA91bFr9GOhVOeC2cQa_YBZbHmHOEnmuZjQQXOpeJm5zjQSc3qUhwPpmyn0lzfcw8YyfSkIR-xK16sNF-tD0fVc4kahz9jchUvv4O8G6w9lgIWAvaL_qAqQ07VhkaUAD40aAOZpAOtQ'
+  token=null
+  telefono=null
   usuario = {
     cajainterna: "",
     nombre: "",
@@ -24,27 +25,44 @@ export class ConfirmarnumPage implements OnInit {
   constructor(private fcm: FcmService,
     private au: AuthService,
     private activate: ActivatedRoute,
-    private router:Router) { }
+    private router:Router) {
+      
+     }
   
 
   ngOnInit() {
-    this.token = this.activate.snapshot.paramMap.get('token')
-
+   this.token = this.activate.snapshot.paramMap.get('token')
+   alert(this.token)
+   this.telefono = this.activate.snapshot.paramMap.get('telefono')
+   this.au.recuperacontoken(this.token).subscribe(usuario =>{
+    this.usuario=usuario[0]
+    console.log(this.usuario);
+    
+  })
   }
 
   generar() {
-    this.au.recuperacontoken(this.token).subscribe(usuario =>{
-      this.usuario=usuario[0]
       this.num = Math.floor(Math.random() * (99999 - 10000) + 1);
-      this.fcm.notificacionforToken("GoPay", "Copie codigo de verificación  " + this.num +" ", this.token, this.usuario.uid, "/tabs/tab2")
-    })
+      console.log("este es el usuario"+ this.usuario.nombre);
+      
+      this.fcm.notificacionforToken("GoPay", "Copie codigo de verificación  " + this.num +" ", this.token, this.usuario.uid, "/confirmarnum")
   }
+
   verificar(){
-    if(this.codigo == this.num){
+    if(this.codigo == this.num && this.telefono == this.usuario.telefono ){
       this.router.navigate(['/tabs/tab2'])
     }else{
       alert('Vuelva a confirmar codigo por favor');
-      
     }
   }
+
+  verificar1(){
+  /*  if(this.codigo == this.num){
+      this.au.login(dato, this.pass).then(res => {
+            this.router.navigate(['/tabs/tab2']);
+          }).catch(error => { 
+      })
+    }*/
+  }
+  
 }

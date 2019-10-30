@@ -24,7 +24,7 @@ export class Tab2Page {
   constructor(public bar: BarcodeScanner,
     private route: Router,
     public fire: AngularFirestore,
-    private au: AuthService) {
+    private au: AuthService,) {
       //lo nuevo
       this.barcodeScannerOptions = {
         showTorchButton: true,
@@ -46,6 +46,7 @@ export class Tab2Page {
   caja: number
   caja1: any
 
+  num1
   ngOnInit() {
     this.uu = this.au.pruebita();
     this.au.recuperaundato(this.uu).subscribe(usuario => {
@@ -89,6 +90,27 @@ export class Tab2Page {
   historial() {
     this.route.navigate(['/ingresoegreso'])
   }
+
+  /*
+  decimal(num){
+    num=23.49898
+    this.num1
+    if(num%1 !=0){
+      console.log('es decimal');
+      this.num1=num.toFixed(1)
+      console.log(this.num1);
+      
+    }else{
+      console.log("es entero");
+      
+    }
+  }
+  */
+ BuscarContacto(event) {
+ const textoBuscar=event.target.value;
+  console.log(textoBuscar);
+
+}
 }
 
 

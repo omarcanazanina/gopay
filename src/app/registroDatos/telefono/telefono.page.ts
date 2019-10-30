@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
-import { AlertController, NavController, LoadingController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController, Platform } from '@ionic/angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { FCM } from '@ionic-native/fcm/ngx';
@@ -28,7 +28,9 @@ export class TelefonoPage implements OnInit {
     public fire: AngularFirestore,
     public au: AuthService,
     private loadingController: LoadingController, 
-    private fcm: FCM, private nav:NavController
+    private fcm: FCM, private nav:NavController,
+
+    public platform: Platform
     ) { }
 
   ngOnInit() {
@@ -41,7 +43,10 @@ export class TelefonoPage implements OnInit {
     this.pin = this.activate.snapshot.paramMap.get('pin')
 
   }
+
+  
   signIn(phoneNumber: number) {
+
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+591" + phoneNumber;
     const phoneNumber1 = phoneNumber.toString();
@@ -82,6 +87,7 @@ export class TelefonoPage implements OnInit {
       .catch(function (error) {
         alert('no se envio')
         console.error("SMS not sent", error);
+        alert(error)
       });
   }
 
@@ -98,7 +104,8 @@ export class TelefonoPage implements OnInit {
       this.au.crear(this.email,this.contrasena,this.pin,this.nombre,phoneNumberString1,this.cajainterna,token,this.badge)
       //this.au.creocorrecto();
       this.eltoken=token
-      this.nav.navigateRoot(['/confirmarnum',this.eltoken])
+      //this.au.confirmatelefono(phoneNumberString1)
+      this.nav.navigateRoot(['/confirmarnum',this.eltoken,phoneNumberString1])
     })
   }
 }

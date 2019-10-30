@@ -22,7 +22,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../historial/historial.module#HistorialPageModule'
-          }
+          },
         ]
       },
  

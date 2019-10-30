@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx'
 import { Router } from '@angular/router';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -17,25 +17,32 @@ export class AppComponent {
     private local: LocalNotifications,
     private fcm: FCM,
     private alertController: AlertController,
-    public toastController: ToastController
+    public toastController: ToastController,
+    
+    public plt: Platform
   ) {
     this.initializeApp();
   }
   initializeApp() {
     this.fcm.subscribeToTopic('marketing');
-    //para incluir para ios colocar un if
     this.fcm.onNotification().subscribe(data => {
-      //if(this.platform.is('ios'))
       if (data.wasTapped) {
         console.log("Received in background");
         this.route.navigate(data.landing_page)
       } else {
-        this.presentAlertConfirm(data.omar, data.jaime, data.landing_page)
+       const a=this.plt.is('ios')
+       alert(a)
+        //this.confirma(data.omar,data.jaime)
+        this.confirma(data.omar, data.jaime, data.landing_page)
         // alert(data.omar+" "+data.jaime+" "+data.landing_page)
         //this.route.navigate(data.landing_page)
       };
-    });
-    this.fcm.unsubscribeFromTopic('marketing');
+    },err=>{
+      console.log("no funciona !!!!!!!!!!!");
+      console.log(err);
+    }
+    );
+    //this.fcm.unsubscribeFromTopic('marketing');
   }
 
   async presentAlertConfirm(t, m, ruta) {
@@ -52,6 +59,25 @@ export class AppComponent {
       ]
     });
     await alert.present();
+  }
+
+
+  async confirma(t,m,ruta) {
+    const toast = await this.toastController.create({
+      header: t,
+      message: m,
+      position: 'top',
+      buttons: [
+     {
+          text: 'Aceptar',
+          role: 'cancel',
+          handler: () => {
+            this.route.navigate(ruta)
+          }
+        }
+      ]
+    });
+    toast.present();
   }
 
 }

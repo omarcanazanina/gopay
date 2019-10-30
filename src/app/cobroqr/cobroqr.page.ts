@@ -31,7 +31,7 @@ export class CobroqrPage implements OnInit {
     })
   }
   createCode() {
-    if (this.qrData <= "" || this.qrData == '0' || this.qrData == '0.' || this.qrData == '.0' || this.qrData =='.') {
+    if (this.qrData <= "" || this.qrData == '0' || this.qrData == '0.' || this.qrData == '.0' || this.qrData =='.' || this.qrData =='00' || this.qrData =='000'|| this.qrData =='0000') {
       this.au.ingresoinvalido()
       this.route.navigate(['/recibedinero'])
     } else {
@@ -43,6 +43,8 @@ export class CobroqrPage implements OnInit {
     this.route.navigate(['/recibedinero'])
   }
   presionar(num) {
+  console.log(num);
+  
     this.qrData = this.qrData + num
     if (num == 'Borrar') {
       this.qrData = ""

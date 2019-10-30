@@ -150,7 +150,6 @@ export class PagarenviocobroPage implements OnInit {
                   identificador: '1'
                 })
                 this.au.pagodecobroexitoso(usu.monto, this.cobrador.nombre);
-                this.router.navigate(['/transferencias'])
                 this.estado=true
               } else {
                 this.au.passincorrecta();

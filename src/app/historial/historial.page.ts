@@ -32,13 +32,7 @@ export class HistorialPage implements OnInit {
         this.historial = info.filter((valor, indiceActual, arreglo) => arreglo.findIndex((item) => item.telefono === valor.telefono
         ) === indiceActual) ;
         console.log(this.historial);
-        
-      /* this.historial.forEach(element => {
-         this.au.recuperaundato(element.clave).subscribe(datitos =>{
-           this.datos.push(datitos)
-           console.log(this.datos);
-         })
-       });*/
+        //prueba para los badges
       })
     })
   }

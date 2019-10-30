@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController, NavController } from '@ionic/angular';
 
 
 export interface usu {
@@ -67,7 +67,8 @@ export class AuthService {
     public fire: AngularFirestore,
     public abase: AngularFireDatabase,
     public toastController: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public nav:NavController
   ) { }
   login(correo: string, pass: string): Promise<any> {
     return new Promise((resolve, rejected) => {
@@ -156,6 +157,11 @@ export class AuthService {
   cerrarsesion() {
     this.db.auth.signOut().then(() => {
       this.route.navigate(['/index']);
+    });
+  }
+  cerrarsesion1(eltoken) {
+    this.db.auth.signOut().then(() => {
+      this.nav.navigateRoot(['/confirmarnum',eltoken])
     });
   }
   //recupera la caja de la aplicacion
@@ -262,7 +268,6 @@ export class AuthService {
       position: 'top'
     });
     toast.present();
-    
   }
  
   async transexitoso() {
@@ -333,7 +338,6 @@ export class AuthService {
       // subHeader: 'Envio Exitoso',
       message: 'Revise sus datos por favor.',
       buttons: ['Aceptar']
-
     });
     await alert.present();
   }
@@ -355,7 +359,6 @@ export class AuthService {
       // subHeader: 'Envio Exitoso',
       message: 'Se creo el usuario de manera satisfactoria.',
       buttons: ['Aceptar']
-
     });
     await alert.present();
   }
@@ -381,6 +384,17 @@ export class AuthService {
     });
     await alert.present();
   }
+   //para confirmar el telefono
+   async confirmatelefono(numero) {
+    const alert = await this.alertController.create({
+      header: 'VERIFIQUE',
+      // subHeader: 'Envio Exitoso',
+      message: 'El numero ingresado es ' + numero,
+      buttons: ['Cerrar']
+
+    });
+    await alert.present();
+  }
   //tarjeta registrada
   async cargocontarjeta(monto, usu) {
     const alert = await this.alertController.create({
@@ -388,7 +402,6 @@ export class AuthService {
       // subHeader: 'Envio Exitoso',
       message: '  La carga de ' + monto + ' Bs. desde ' + usu + ' fue exitoso',
       buttons: ['Aceptar']
-
     });
     await alert.present();
   }
@@ -399,7 +412,6 @@ export class AuthService {
       // subHeader: 'Envio Exitoso',
       message: 'El retiro del monto a su cuenta fue exitoso',
       buttons: ['Aceptar']
-
     });
     await alert.present();
   }
@@ -432,6 +444,7 @@ export class AuthService {
   actualizacajatarjeta(monto, id) {
     return this.fire.collection('/user/' + id + '/tarjetas').doc(id).set(monto, { merge: true })
   }
+
   //para recuperar datos de la cuenta
   recuperacuenta(id: string) {
     return this.fire.collection('/user/' + id + '/cuentas').snapshotChanges().pipe(map(dat => {
@@ -483,6 +496,7 @@ export class AuthService {
     });
     await alert.present();
   }
+
   // validar pin
   async pininvalido() {
     const alert = await this.alertController.create({
@@ -493,6 +507,7 @@ export class AuthService {
     });
     await alert.present();
   }
+
   // confirmacion de envio de cobro
   async enviocobro(monto, usu) {
     const alert = await this.alertController.create({

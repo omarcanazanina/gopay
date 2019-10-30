@@ -70,7 +70,7 @@ export class CardsPage implements OnInit {
   }
 
   async presentAlertPrompt() {
-    if (this.monto <= 0){
+    if (this.monto <= 0 ){
      this.au.ingresoinvalido()
     }else{
       if (parseInt(this.usuario.cajainterna) >= this.monto) {
@@ -126,7 +126,7 @@ export class CardsPage implements OnInit {
                     identificador:'0'
                   })
                   this.au.presentToast(this.monto,this.concorreo.nombre);
-                  this.fcm.notificacionforToken("GoPay"," prueba cards Acaba de recibir el pago de " +this.monto+ "Bs. de "+this.usuario.nombre+" ",this.concorreo.token,this.usuario.uid,"/tabs/tab2")
+                  this.fcm.notificacionforToken("GoPay"," Acaba de recibir el pago de " +this.monto+ "Bs. de "+this.usuario.nombre+" ",this.concorreo.token,this.usuario.uid,"/tabs/tab2")
                   this.route.navigate(['tabs/tab2'])
                 }
                 else {

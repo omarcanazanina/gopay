@@ -21,6 +21,9 @@ export class TransferenciasPage implements OnInit {
   sub
   uu: any
   items: any
+  ContactsNoneOrden: any
+  ContactsTrueOrden: any
+  textoBuscar = ''
   constructor(private au: AuthService,
     public modal: ModalController,
     private contactos: Contacts,
@@ -39,6 +42,12 @@ export class TransferenciasPage implements OnInit {
         return (item.displayName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  BuscarContacto(event) {
+    this.textoBuscar=event.target.value;
+    alert(this.textoBuscar)
+
   }
 
   ngOnInit() {
@@ -70,18 +79,20 @@ export class TransferenciasPage implements OnInit {
       hasPhoneNumber: true
     }
     this.contactos.find(['*'], options).then((contactos: Contact[]) => {
-      alert(JSON.stringify(contactos))
       for (let item of contactos) {
         if (item.phoneNumbers) {
-         // item["value"] = this.codigo(item.phoneNumbers[0].value)
-         // alert(item["value"])
+
+          // item["value"] = this.codigo(item.phoneNumbers[0].value)
+          // alert(item["value"])
           this.au.verificausuarioActivo(this.codigo(item.phoneNumbers[0].value))
             .subscribe(resp => {
               if (resp.length > 0) {
                 this.ContactsTrue.push(item)
+                //this.ContactsTrueOrden=this.au.ordenarjson(this.ContactsTrue,'usu.name.givenName','asc')
               } else {
                 this.ContactsNone.push(item)
-                }
+                //this.ContactsNoneOrden=this.au.ordenarjson(this.ContactsNone,'usu.name.giveName','asc')
+              }
             })
         }
       }
@@ -90,6 +101,7 @@ export class TransferenciasPage implements OnInit {
       })
     })
   }
+
 
   /*
   getContactos() {
