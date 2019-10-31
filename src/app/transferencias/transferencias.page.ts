@@ -45,7 +45,7 @@ export class TransferenciasPage implements OnInit {
     }
     this.contactos.find(['*'], options).then((contactos: Contact[]) => {
       alert(JSON.stringify(contactos))
-      this.Ordenado=this.au.ordenarjson(contactos,'name.formatted','asc')
+      this.Ordenado=this.au.ordenarjson(contactos,'id','asc')
       alert(JSON.stringify(this.Ordenado))
       for (let item of contactos) {
         if (item.phoneNumbers) {

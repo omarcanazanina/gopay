@@ -42,6 +42,7 @@ const routes: Routes = [
   { path: 'correo/:nombre', loadChildren: './registroDatos/correo/correo.module#CorreoPageModule' },
   { path: 'pruebasms', loadChildren: './pruebasms/pruebasms.module#PruebasmsPageModule' },
   { path: 'confirmarnum/:token/:telefono', loadChildren: './registroDatos/confirmarnum/confirmarnum.module#ConfirmarnumPageModule' },
+  { path: 'enviadatosgmail/:id', loadChildren: './enviadatosgmail/enviadatosgmail.module#EnviadatosgmailPageModule' },
 
 ];
 @NgModule({

@@ -3,6 +3,10 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { ModalController } from '@ionic/angular';
+import { DetalleegresoPage } from '../detalleegreso/detalleegreso.page';
+import { EnviadatosgmailPage } from '../enviadatosgmail/enviadatosgmail.page';
 
 @Component({
   selector: 'app-tab2',
@@ -24,7 +28,9 @@ export class Tab2Page {
   constructor(public bar: BarcodeScanner,
     private route: Router,
     public fire: AngularFirestore,
-    private au: AuthService,) {
+    private au: AuthService,
+    private emailComposer:EmailComposer,
+    private modalController:ModalController) {
       //lo nuevo
       this.barcodeScannerOptions = {
         showTorchButton: true,
@@ -46,7 +52,10 @@ export class Tab2Page {
   caja: number
   caja1: any
 
-  num1
+  //num1
+  primero = ''
+  segundo = ''
+  para = ''
   ngOnInit() {
     this.uu = this.au.pruebita();
     this.au.recuperaundato(this.uu).subscribe(usuario => {
@@ -91,6 +100,44 @@ export class Tab2Page {
     this.route.navigate(['/ingresoegreso'])
   }
 
+  enviar(){
+    let email = {
+      to: this.para,
+      cc: [],
+      bcc: [],
+      attachments: [],
+      subject: this.primero,
+      body: this.segundo,
+      isHtml: true
+      //app: 'Gmail'
+    
+    }
+    this.emailComposer.open(email);
+  }
+
+  async enviadatos(usu) {
+    const modal = await this.modalController.create({
+      component: EnviadatosgmailPage,
+      //showBackdrop: false,
+      cssClass: 'enviadatos',
+      componentProps: {
+        usu: this.usuario
+      }
+    });
+    return await modal.present();
+  }
+  async detalleegreso(usu) {
+    const modal = await this.modalController.create({
+      component: DetalleegresoPage,
+      //showBackdrop: false,
+      cssClass: 'detalleegreso',
+      componentProps: {
+        usu: this.usuario
+      }
+    });
+    return await modal.present();
+  }
+
   /*
   decimal(num){
     num=23.49898
@@ -106,11 +153,7 @@ export class Tab2Page {
     }
   }
   */
- BuscarContacto(event) {
- const textoBuscar=event.target.value;
-  console.log(textoBuscar);
 
-}
 }
 
 

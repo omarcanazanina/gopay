@@ -19,6 +19,7 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { DetalleenviocobroPage } from './detalleenviocobro/detalleenviocobro.page'
 import { DetalleingresoegresoPage } from './detalleingresoegreso/detalleingresoegreso.page';
 import { DetalleegresoPage } from './detalleegreso/detalleegreso.page';
+import { EnviadatosgmailPage } from './enviadatosgmail/enviadatosgmail.page';
 //notificaciones*ambos
 import { FCM } from '@ionic-native/fcm/ngx';
 //prueba para las notificaciones 
@@ -31,6 +32,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { PipesModule } from './pipes/pipes.module';
+import {EmailComposer} from '@ionic-native/email-composer/ngx'
 
 
 export const firebaseConfig = {
@@ -47,13 +49,16 @@ export const firebaseConfig = {
     UsuarioComponent,
     DetalleenviocobroPage,
     DetalleingresoegresoPage,
-    DetalleegresoPage
+    DetalleegresoPage,
+    EnviadatosgmailPage
   ],
 
   entryComponents: [UsuarioComponent,
     DetalleenviocobroPage,
     DetalleingresoegresoPage,
-    DetalleegresoPage],
+    DetalleegresoPage,
+    EnviadatosgmailPage
+  ],
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -75,6 +80,7 @@ export const firebaseConfig = {
     LocalNotifications,
     FCM,
     Contacts,
+    EmailComposer,
    // GooglePlus,
     AngularFirestore,
     SocialSharing,
