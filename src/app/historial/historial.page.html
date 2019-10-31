@@ -1,33 +1,45 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>historial</ion-title>
+    <ion-searchbar color="primary" placeholder="Buscar contacto" animated (ionChange)="BuscarHistorial( $event )">
+    </ion-searchbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)='paso()'>
-    <ion-fab-button>
-      <ion-icon name="chatboxes"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  <div>
-   <!--
+  <!--
       <ion-grid>
       <ion-row>
         <ion-col size ="10"> 
-   --> 
-          <ion-item *ngFor="let usu of historial"  lines="none" (click)="enviadatos(usu)">
-            <ion-avatar item-start>
-              <img src="../../assets/moneda.svg">
-            </ion-avatar>
-            <ion-label class="label-alumnos">{{usu.nombre}}
-              <p>{{usu.telefono}}</p>
-            </ion-label>
-          </ion-item>
-       <!--
+          
+   -->
+  <div *ngIf="c == 0">
+    <p class="textito">Usted no tiene ninguna transacción</p><br>
+    <p class="textito">Presionar el icono de la parte inferior para realizar transacciones</p>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)='paso()'>
+      <ion-fab-button>
+        <ion-icon name="chatboxes"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <div *ngIf="c == 1 ">
+    <ion-item *ngFor="let usu of historial  | filtro1: textoBuscar " lines="none" (click)="enviadatos(usu)">
+      <ion-avatar item-start>
+        <img src="../../assets/moneda.svg">
+      </ion-avatar>
+      <ion-label class="label-alumnos">{{usu.nombre}}
+        <p>{{usu.telefono}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)='paso()'>
+      <ion-fab-button>
+        <ion-icon name="chatboxes"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <!--
         </ion-col>
         <ion-col size="2">
           <ion-item *ngFor="let c of datos" lines="none" >
@@ -38,5 +50,5 @@
         </ion-col>
        </ion-row>
      </ion-grid> -->
-  </div>
+
 </ion-content>

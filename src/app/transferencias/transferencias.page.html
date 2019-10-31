@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-searchbar color="primary" placeholder="Buscar contacto" 
+    <ion-searchbar color="primary" placeholder="Buscar contacto" animated
                     (ionChange)="BuscarContacto( $event )">
 
     </ion-searchbar>
@@ -11,23 +11,12 @@
 </ion-header>
 
 <ion-content>
-  <!--<ion-item *ngFor="let usu of ContactsTrue" lines="none" (click)="openusu(usu)">  hacer transferencia directa-->
-<!--
-<ion-label>
-    <ion-list>
-      <ion-item *ngFor="let usu of items " (click)="openusu(usu)">
-        <p>{{usu.nombre}}</p>
-        <ion-icon class="ir" name="arrow-forward"></ion-icon>
-      </ion-item>
-    </ion-list>
-  </ion-label>
--->
   <ion-list>
     <ion-item *ngFor="let usu of ContactsTrue | filtro: textoBuscar" lines="none" (click)="enviadatos(usu)">
       <ion-avatar item-start>
         <img src="../../assets/moneda.svg">
       </ion-avatar>
-      <ion-label class="label-alumnos">{{usu.name.givenName}} {{usu.name.familyName}}
+      <ion-label class="label-alumnos"> {{usu.name.formatted}}
         <p> {{usu.phoneNumbers[0].value}} </p>
       </ion-label>
     </ion-item>
@@ -37,11 +26,11 @@
     Invitar amigos
   </ion-item>
   <ion-list>
-    <ion-item *ngFor="let u of ContactsNone" lines="none">
+    <ion-item *ngFor="let u of ContactsNone | filtro: textoBuscar" lines="none">
       <ion-avatar item-start>
         <ion-icon name="md-contact" size="large"></ion-icon>
       </ion-avatar>
-      <ion-label class="label-alumnos">{{u.name.givenName}} {{u.name.familyName}}
+      <ion-label class="label-alumnos"> {{u.name.formatted}}
         <p>{{u.phoneNumbers[0].value}}</p>
       </ion-label>
       <ion-button (click)="invitar()" slot="end" shape="round">

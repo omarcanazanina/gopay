@@ -127,7 +127,7 @@ export class PagarenviocobroPage implements OnInit {
                 this.fire.collection('/user/' + this.usuario.uid + '/egreso').add({
                   monto: usu.monto,
                   id: this.cobrador.uid,
-                  nombre: this.cobrador.nombre,
+                  nombre: this.nombresito,
                   telefono: this.cobrador.telefono,
                   fechita: this.fechita,
                   fecha: this.fecha,
@@ -149,7 +149,7 @@ export class PagarenviocobroPage implements OnInit {
                   saldo: this.cajainterna1,
                   identificador: '1'
                 })
-                this.au.pagodecobroexitoso(usu.monto, this.cobrador.nombre);
+                this.au.pagodecobroexitoso(usu.monto, this.nombresito);
                 this.estado=true
               } else {
                 this.au.passincorrecta();
@@ -181,7 +181,7 @@ export class PagarenviocobroPage implements OnInit {
       //
       if (parseFloat(this.usuario.cajainterna) >= monto) {
         const alert = await this.alertController.create({
-          header: 'Monto a transferir' + ' ' + monto + ' ' + 'Bs. a ' + this.cobrador.nombre,
+          header: 'Monto a transferir' + ' ' + monto + ' ' + 'Bs. a ' + this.nombresito,
           cssClass:'prompt_alert',
           inputs: [
             {
@@ -227,7 +227,7 @@ export class PagarenviocobroPage implements OnInit {
                   this.fire.collection('/user/' + this.usuario.uid + '/egreso').add({
                     monto: monto,
                     id: this.cobrador.uid,
-                    nombre: this.cobrador.nombre,
+                    nombre: this.nombresito,
                     telefono: this.cobrador.telefono,
                     fechita: this.fechita,
                     fecha: this.fecha,
@@ -241,7 +241,7 @@ export class PagarenviocobroPage implements OnInit {
                     monto: monto,
                     detalle: detalle,
                     clave: this.cobrador.uid,
-                    nombre: this.cobrador.nombre,
+                    nombre: this.nombresito,
                     telefono: this.cobrador.telefono,
                     fechita: this.fechita,
                     fecha: this.fecha,
@@ -259,7 +259,7 @@ export class PagarenviocobroPage implements OnInit {
                     saldo: this.cajaactual1
 
                   })
-                  this.au.transexitoso1(monto, this.cobrador.nombre);
+                  this.au.transexitoso1(monto, this.nombresito);
                   this.fcm.notificacionforToken("GoPay", "Acaba de recibir una tranferencia de " + monto + "Bs. de " + this.usuario.nombre + " ", this.cobrador.token, this.usuario.uid, "/tabs/tab2")
                   this.modal.dismiss();
                   this.monto = ''
@@ -287,7 +287,7 @@ export class PagarenviocobroPage implements OnInit {
       monto: monto,
       dato: 'enviado',
       clave: this.cobrador.uid,
-      nombre: this.cobrador.nombre,
+      nombre: this.nombresito,
       telefono: this.cobrador.telefono,
       fechita: this.fechita,
       fecha: this.fecha,
@@ -307,11 +307,10 @@ export class PagarenviocobroPage implements OnInit {
       detalle: detalle,
       estado: 0
     })
-    this.au.enviocobro(monto, this.cobrador.nombre)
+    this.au.enviocobro(monto, this.nombresito)
     this.fcm.notificacionforToken("GoPay", "Acaba de recibir una solicitud de pago de " + monto + "Bs. de " + this.usuario.nombre + " ", this.cobrador.token, this.usuario.uid, "/tabs/tab2")
     this.monto = ''
     this.detalle = ''
-    //this.route.navigate(['tabs/tab2'])
   }
 
 }

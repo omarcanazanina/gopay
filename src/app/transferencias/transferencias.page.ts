@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../servicios/auth.service';
-import { ModalController, LoadingController } from '@ionic/angular';
-import { UsuarioComponent } from '../componentes/usuario/usuario.component';
+import { LoadingController } from '@ionic/angular';
 import { Contacts, Contact } from '@ionic-native/contacts/ngx';
 import { Router } from '@angular/router';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
@@ -14,61 +13,27 @@ export class TransferenciasPage implements OnInit {
   datito = []
   ContactsNone = []
   ContactsTrue = []
-  ContactsSearch = []
-  usuario = {
-    nombre: ""
-  }
-  sub
-  uu: any
-  items: any
   ContactsNoneOrden: any
   ContactsTrueOrden: any
+  Ordenado: []
+  Ordenado1: []
   textoBuscar = ''
   constructor(private au: AuthService,
-    public modal: ModalController,
     private contactos: Contacts,
     public loadingController: LoadingController,
     private route: Router,
     private socialShare: SocialSharing
   ) {
     this.loadContacts()
-    //this.getContactos()
-  }
-
-  getItems(ev: any) {
-    const val = ev.target.value;
-    if (val && val.trim() != '') {
-      this.ContactsTrue = this.ContactsTrue.filter((item) => {
-        return (item.displayName.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
   }
 
   BuscarContacto(event) {
-    this.textoBuscar=event.target.value;
-    alert(this.textoBuscar)
-
+    this.textoBuscar = event.target.value;
   }
 
   ngOnInit() {
-    this.uu = this.au.pruebita();
-    this.au.recuperaundato(this.uu).subscribe(usuario => {
-      this.usuario = usuario;
-    })
-    this.au.recuperadatos().subscribe(datos => {
-      this.datito = datos;
-    })
   }
 
-  openusu(usu) {
-    this.modal.create({
-      component: UsuarioComponent,
-      cssClass: 'my-custom-modal-css',
-      componentProps: {
-        usu: usu
-      }
-    }).then((modal) => modal.present())
-  }
   //otro metodo para import contactos
 
   loadContacts() {
@@ -79,9 +44,11 @@ export class TransferenciasPage implements OnInit {
       hasPhoneNumber: true
     }
     this.contactos.find(['*'], options).then((contactos: Contact[]) => {
+      alert(JSON.stringify(contactos))
+      this.Ordenado=this.au.ordenarjson(contactos,'name.formatted','asc')
+      alert(JSON.stringify(this.Ordenado))
       for (let item of contactos) {
         if (item.phoneNumbers) {
-
           // item["value"] = this.codigo(item.phoneNumbers[0].value)
           // alert(item["value"])
           this.au.verificausuarioActivo(this.codigo(item.phoneNumbers[0].value))
@@ -90,7 +57,7 @@ export class TransferenciasPage implements OnInit {
                 this.ContactsTrue.push(item)
                 //this.ContactsTrueOrden=this.au.ordenarjson(this.ContactsTrue,'usu.name.givenName','asc')
               } else {
-                this.ContactsNone.push(item)
+                this.ContactsNone.push(item) 
                 //this.ContactsNoneOrden=this.au.ordenarjson(this.ContactsNone,'usu.name.giveName','asc')
               }
             })
@@ -103,36 +70,6 @@ export class TransferenciasPage implements OnInit {
   }
 
 
-  /*
-  getContactos() {
-     let load = this.presentLoading()
-     this.contactos.find(['displayName', 'phoneNumbers'], { multiple: true })
-       .then(data => {
-         console.log(JSON.stringify(data));
-         for (let item of data) {
-           if (item.phoneNumbers) {
-             item["numero"] = this.codigo(item.phoneNumbers[0].value)
-             this.sub = this.au.verificausuarioActivo(this.codigo(item.phoneNumbers[0].value))
-               .subscribe(resp => {
-                 if (resp.length > 0) {
-                   this.ContactsTrue.push(item)
-                 } else {
-                   this.ContactsNone.push(item)
-                 }
-               })
-           }
-         }
-         // sub.unsubscribe()
-         load.then(loading => {
-           loading.dismiss();
-         })
-       })
-       .catch(err => {
-         console.log("error", err);
-         alert(err)
-       });
-   }
- */
   codigo(num) {
     let nuevo = num.replace("+591", "").trim()
     return nuevo
@@ -146,7 +83,7 @@ export class TransferenciasPage implements OnInit {
     return loading;
   }
   enviadatos(usu) {
-    this.route.navigate(['/pagarenviocobro', usu.phoneNumbers[0].value, usu.name.givenName])
+    this.route.navigate(['/pagarenviocobro', usu.phoneNumbers[0].value, usu.name.formatted])
   }
 
   invitar() {

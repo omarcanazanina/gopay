@@ -261,13 +261,15 @@ export class AuthService {
   }
 
   //alertas de aviso para la transferencia
+
   async transexitoso1(monto, usu) {
-    const toast = await this.toastController.create({
-      message: 'La transferencia de ' + monto + ' Bs. a ' + usu + ' se realizo con exito',
-      duration: 4500,
-      position: 'top'
+    const alert = await this.alertController.create({
+      header: 'GoPay',
+      // subHeader: 'Envio Exitoso',
+      message: 'La transferencia de ' + monto + '  Bs. a ' + usu + ' se realizo con éxito.',
+      buttons: ['Aceptar']
     });
-    toast.present();
+    await alert.present();
   }
  
   async transexitoso() {
@@ -511,13 +513,14 @@ export class AuthService {
   // confirmacion de envio de cobro
   async enviocobro(monto, usu) {
     const alert = await this.alertController.create({
-      header: 'ATENCIÓN',
+      header: 'GoPay',
       // subHeader: 'Envio Exitoso',
       message: 'Se envio la petición de pago de ' + monto + '  Bs. a ' + usu + ' exitosamente.',
       buttons: ['Aceptar']
     });
     await alert.present();
   }
+  
   //ordena cobrosapagar *tab1* no utilizado
  /* ordenarcobros(id: string): Observable<any> {
     this.ingresoscollection = this.fire.collection('/user/' + id + '/cobros/', x => x.orderBy('fecha', 'desc'));
@@ -622,10 +625,8 @@ export class AuthService {
     }))
   }
 
-  aaa(){
-    console.log('enviado desde el servicio');
-    
-  }
+
+
 }
 
 
