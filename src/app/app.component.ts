@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx'
 import { Router } from '@angular/router';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+//import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AlertController, ToastController, Platform } from '@ionic/angular';
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(
     private route: Router,
-    private local: LocalNotifications,
+   // private local: LocalNotifications,
     private fcm: FCM,
     private alertController: AlertController,
     public toastController: ToastController,
@@ -31,7 +31,7 @@ export class AppComponent {
         this.route.navigate(data.landing_page)
       } else {
        const a=this.plt.is('ios')
-       alert(a)
+       //alert(a)
         //this.confirma(data.omar,data.jaime)
         this.confirma(data.omar, data.jaime, data.landing_page)
         // alert(data.omar+" "+data.jaime+" "+data.landing_page)

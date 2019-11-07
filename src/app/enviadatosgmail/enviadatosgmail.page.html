@@ -4,93 +4,33 @@
         <ion-avatar item-start >
             <img  src="../../assets/moneda.svg" >
         </ion-avatar>
-            <h3 class="titulo">Detalle egreso</h3>
-            <ion-button slot="end" fill="clear" (click)="closeUsuario()" ><ion-icon color="light" name="close" color="primary" class="icono"></ion-icon></ion-button>
-    </ion-item>
+            <h3 class="titulo">GoPay</h3>
+   </ion-item>
         
-    <ion-grid fixed *ngIf="cont==0">
+    <ion-grid fixed >
+      <p>Por su seguridad y respaldo se enviara sus datos a su correo <b> {{usu.correo}}</b> </p>
       <ion-row>
-        <ion-col size="5">Monto:</ion-col>
-        <ion-col size="7">{{usu.monto}} Bs.</ion-col>
-      </ion-row>
-      <ion-row>
-          <ion-col size="5">Destinario:</ion-col>
+          <ion-col size="5"><b>Nombre:</b></ion-col>
           <ion-col size="7">{{usu.nombre}}</ion-col>
       </ion-row>
       <ion-row>
-          <ion-col size="5">Telefono:</ion-col>
+          <ion-col size="5"><b>Telefono</b> </ion-col>
           <ion-col size="7">{{usu.telefono}}</ion-col>
       </ion-row>
       <ion-row>
-          <ion-col size="5">Descripción:</ion-col>
-          <ion-col size="7">{{usu.descripcion}}</ion-col>
+          <ion-col size="5"><b>Correo:</b></ion-col>
+          <ion-col size="7">{{usu.correo}}</ion-col>
       </ion-row>
       <ion-row>
-          <ion-col size="5">Fecha:</ion-col>
-          <ion-col size="7">{{usu.fechita}}</ion-col>
+          <ion-col size="5"><b>Pin:</b></ion-col>
+          <ion-col size="7">{{usu.password}}</ion-col>
       </ion-row>
       <ion-row>
-          <ion-col size="5">Saldo Balance:</ion-col>
-          <ion-col size="7">{{usu.saldo}} Bs.</ion-col>
+          <ion-col size="5"><b>Contraseña:</b></ion-col>
+          <ion-col size="7">{{usu.pass}}</ion-col>
       </ion-row>
     </ion-grid>
-  
-    <!--
-          <table  id="TableColor" *ngIf="cont==0">
-            <tr ><td ><b>Monto:</b></td><td>{{usu.monto}} Bs.</td></tr>
-            <tr ><td ><b>Destinario:</b></td><td>{{usu.nombre}}</td></tr>
-            <tr><td><b>Telefono:</b></td><td>{{usu.telefono}}</td></tr>
-            <tr><td><b>Descripción:</b></td><td>{{usu.descripcion}}</td></tr>
-            <tr><td><b>Fecha:</b></td><td>{{usu.fechita}}</td></tr>
-            <tr><td><b>Saldo Balance:</b></td><td>{{usu.saldo}} Bs.</td></tr>
-          </table>
-    --> 
-      <ion-grid fixed *ngIf="cont==1">
-          <ion-row>
-            <ion-col size="5">Monto:</ion-col>
-            <ion-col size="7">{{usu.monto}} Bs.</ion-col>
-          </ion-row>
-          <ion-row>
-              <ion-col size="5">Destinario:</ion-col>
-              <ion-col size="7">{{usu.nombre}}</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size="5">Telefono:</ion-col>
-                <ion-col size="7">{{usu.telefono}}</ion-col>
-              </ion-row>
-              <ion-row>
-                  <ion-col size="5">Cta destino:</ion-col>
-                  <ion-col size="7">{{usu.cuenta}}</ion-col>
-                </ion-row>
-              <ion-row>
-                  <ion-col size="5">Banco:</ion-col>
-                  <ion-col size="7">{{usu.banco}}</ion-col>
-                </ion-row>
-              <ion-row>
-                  <ion-col size="5">Descripción:</ion-col>
-                  <ion-col size="7">{{usu.descripcion}}</ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="5">Fecha:</ion-col>
-                    <ion-col size="7">{{usu.fechita}}</ion-col>
-                  </ion-row>
-                  <ion-row>
-                      <ion-col size="5">Saldo Balance:</ion-col>
-                      <ion-col size="7">{{usu.saldo}} Bs.</ion-col>
-                    </ion-row>
-     
-        </ion-grid>
-      <!--
-  <table  id="TableColor" *ngIf="cont==1">
-            <tr ><td ><b>Monto:</b></td><td>{{usu.monto}} Bs.</td></tr>
-            <tr ><td ><b>Destinatario:</b></td><td>{{usu.nombre}}</td></tr>
-            <tr ><td ><b>Cta. destino:</b></td><td>{{usu.cuenta}}</td></tr>
-            <tr><td><b>Telefono:</b></td><td>{{usu.telefono}}</td></tr>
-            <tr><td><b>Banco:</b></td><td>{{usu.banco}}</td></tr>
-            <tr><td><b>Descripción:</b></td><td>{{usu.descripcion}}</td></tr>
-            <tr><td><b>Fecha:</b></td><td>{{usu.fechita}}</td></tr>
-            <tr><td><b>Saldo Balance:</b></td><td>{{usu.saldo}} Bs.</td></tr>
-          </table>
-      -->  
+
+    <ion-button color="primary " expand="block" (click)="enviar()"> enviar</ion-button>
   </ion-content>
   

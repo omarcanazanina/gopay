@@ -91,6 +91,21 @@ export class AuthService {
       });
     })
   }
+  //recuperar logueado
+  prueba1(){
+   this.db.auth.onAuthStateChanged((user)=> {
+     var email,uid
+      if (user) {
+        email = user.email;
+        uid = user.uid;
+         return user.uid;
+      } else {
+        // No user is signed in.
+      }
+    });
+  }
+ 
+
   //para recuperar el logueado
   pruebita() {
     var user = this.db.auth.currentUser;
@@ -120,7 +135,7 @@ export class AuthService {
       }).catch(err => reject(err));
     })
   }
-  crear(correo: string, pass: string,  password: number, nombre: string, telefono: string, cajainterna: number, token: string,badge:number) {
+  crear(correo: string, pass: string,  password: number, nombre: string, telefono: string, cajainterna: number, token: string,estado:number) {
     return new Promise((resolve, reject) => {
       this.db.auth.createUserWithEmailAndPassword(correo, pass).then(res => {
         const uid = res.user.uid;
@@ -133,14 +148,14 @@ export class AuthService {
           token: token,
           password: password,
           uid: uid,
-          badge:badge
+          estado:estado
         })
         resolve(res);
       }).catch(err => reject(err));
     })
   }
 //no esta funcionando
-  crearcontel(uid:string, correo: string, pass: string,  password: number, nombre: string, telefono: string, cajainterna: number,token: string,badge:number) {
+  crearcontel(uid:string, correo: string, pass: string,  password: number, nombre: string, telefono: string, cajainterna: number,token: string,estado:number) {
       this.fire.collection('user').doc(uid).set({
         uid: uid,
         correo: correo,
@@ -150,7 +165,7 @@ export class AuthService {
         cajainterna: cajainterna,
         token: token,
         password: password,
-        badge: badge
+        estado: estado
       })
     }
 
@@ -204,6 +219,10 @@ export class AuthService {
   actualizacajabancaria(cajabancaria, id) {
     return this.fire.collection('user').doc(id).set(cajabancaria, { merge: true })
   }
+    //actualiza badge (envio de correo) del usuario
+    enviocorreo(badge, id) {
+      return this.fire.collection('user').doc(id).set(badge, { merge: true })
+    }
   //recupera datos del usuario con el correo
   recuperaconcorreo(correo: string): Observable<any> {
     var query = ref => ref.where('correo', '==', correo)
@@ -624,8 +643,6 @@ export class AuthService {
       })
     }))
   }
-
-
 
 }
 

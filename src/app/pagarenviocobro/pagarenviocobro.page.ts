@@ -6,6 +6,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { ModalController } from '@ionic/angular'
 import { DetalleenviocobroPage } from '../detalleenviocobro/detalleenviocobro.page'
 import { FcmService } from '../servicios/fcm.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @Component({
@@ -58,7 +59,8 @@ export class PagarenviocobroPage implements OnInit {
     public router: Router,
     public modal: ModalController,
     private fcm: FcmService,
-    public route: Router) {
+    public route: Router,
+    private localNotifications: LocalNotifications) {
      }
     callFunction(es){
       if(es){
@@ -183,6 +185,7 @@ export class PagarenviocobroPage implements OnInit {
         const alert = await this.alertController.create({
           header: 'Monto a transferir' + ' ' + monto + ' ' + 'Bs. a ' + this.nombresito,
           cssClass:'prompt_alert',
+          backdropDismiss:false,
           inputs: [
             {
               name: 'codigo',
@@ -241,7 +244,7 @@ export class PagarenviocobroPage implements OnInit {
                     monto: monto,
                     detalle: detalle,
                     clave: this.cobrador.uid,
-                    nombre: this.nombresito,
+                    formatted: this.nombresito,
                     telefono: this.cobrador.telefono,
                     fechita: this.fechita,
                     fecha: this.fecha,
@@ -309,8 +312,13 @@ export class PagarenviocobroPage implements OnInit {
     })
     this.au.enviocobro(monto, this.nombresito)
     this.fcm.notificacionforToken("GoPay", "Acaba de recibir una solicitud de pago de " + monto + "Bs. de " + this.usuario.nombre + " ", this.cobrador.token, this.usuario.uid, "/tabs/tab2")
+   // alert('recibio el cobro de ' +this.+)
     this.monto = ''
     this.detalle = ''
   }
 
+  enviar(){
+    
+  }
+  
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @Component({
   selector: 'app-enviadatosgmail',
@@ -8,17 +8,35 @@ import { ModalController } from '@ionic/angular';
 })
 export class EnviadatosgmailPage implements OnInit {
 
-  constructor(private modal: ModalController) { }
-  usu:any=[]
-  cont=0
+  constructor(private emailComposer:EmailComposer) { }
+  usu = {
+    cajainterna: "",
+    correo: "",
+    nombre:"",
+    pass:"",
+    telefono:"",
+    cajabancaria:"",
+    uid:""
+  }
+  primero = 'GoPay'
+  segundo = ''
+  para = this.usu.correo
   ngOnInit() {
-    console.log(this.usu.banco);
     
-    if(this.usu.banco != undefined)
-    this.cont=1
+  }
+  enviar(){
+    let email = {
+      to: this.para,
+      cc: [],
+      bcc: [],
+      attachments: [],
+      subject: this.primero,
+      body: this.segundo,
+      isHtml: true
+      //app: 'Gmail'
+    
     }
-    closeUsuario() {
-      this.modal.dismiss()
-    }
+    this.emailComposer.open(email);
+  }
 
 }

@@ -22,7 +22,18 @@
       </ion-segment-button>
     </ion-segment>
   </div>
+  <!--
+  <ion-item>
+      <ion-label>Día</ion-label>
+    <ion-datetime displayFormat="D M YYYY" [(ngModel)]="fecha" (ionChange)="fechaChange($event)"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mes</ion-label>
+        <ion-datetime displayFormat="MM YYYY" placeholder="Select Date"></ion-datetime>
+      </ion-item>
+  -->
 
+ 
   <div [ngSwitch]="movimientos" class="segment">
     <ion-list *ngSwitchCase="'balance'">
       <ion-card style="text-align: right">
@@ -31,16 +42,23 @@
       <ion-label>
         <ion-list *ngFor="let usu of ordenado ">
           <ion-item *ngIf="usu.identificador == '1'" with="90%" (click)="detalleingresoegreso(usu)">
-            <p class="ingreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
+            <ion-label>
+                <h2 class="ingreso">{{usu.nombre}}</h2>
+                <p>{{usu.fechita}}</p>
+                <p class="ir" >+{{usu.monto}} Bs.</p>
+            </ion-label>
           </ion-item>
           <ion-item *ngIf="usu.identificador == '0'" (click)="detalleegreso(usu)">
-            <p class="egreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
+            <ion-label>
+                <h2 class="egreso">{{usu.nombre}} </h2>
+                <p>{{usu.fechita}}</p>
+                <p class="ir">-{{usu.monto}} Bs.</p>
+            </ion-label>
           </ion-item>
-          <ion-icon class="ir" name="arrow-forward"></ion-icon>
         </ion-list>
       </ion-label>
-    
     </ion-list>
+
 
     <ion-list *ngSwitchCase="'ingresos'">
       <ion-card style="text-align: right">
@@ -49,8 +67,11 @@
       <ion-label>
         <ion-list>
           <ion-item *ngFor="let usu of consulta" (click)="detalleingresoegreso(usu)">
-            <p class="ingreso" >{{usu.nombre}} {{usu.monto}} Bs.</p>
-            <ion-icon class="ir" name="arrow-forward"></ion-icon>
+            <ion-label>
+                <h2 class="ingreso" >{{usu.nombre}} </h2>
+                <p>{{usu.fechita}}</p>
+                <p class="ir"> +{{usu.monto}} Bs.</p>
+            </ion-label>
           </ion-item>
         </ion-list>
       </ion-label>
@@ -63,11 +84,16 @@
       <ion-label>
         <ion-list>
           <ion-item *ngFor="let usu of datito " (click)="detalleegreso(usu)">
-            <p class="egreso">{{usu.nombre}} {{usu.monto}} Bs.</p>
-            <ion-icon class="ir" name="arrow-forward"></ion-icon>
+            <ion-label>
+                <h2 class="egreso">{{usu.nombre}} </h2>
+                <p>{{usu.fechita}}</p>
+                <p class="ir">-{{usu.monto}} Bs.</p>
+            </ion-label>
           </ion-item>
         </ion-list>
       </ion-label>
     </ion-list>
   </div>
+  
+ 
 </ion-content>

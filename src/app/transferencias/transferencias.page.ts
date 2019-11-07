@@ -33,7 +33,6 @@ export class TransferenciasPage implements OnInit {
 
   ngOnInit() {
   }
-
   //otro metodo para import contactos
 
   loadContacts() {
@@ -44,9 +43,6 @@ export class TransferenciasPage implements OnInit {
       hasPhoneNumber: true
     }
     this.contactos.find(['*'], options).then((contactos: Contact[]) => {
-      alert(JSON.stringify(contactos))
-      this.Ordenado=this.au.ordenarjson(contactos,'id','asc')
-      alert(JSON.stringify(this.Ordenado))
       for (let item of contactos) {
         if (item.phoneNumbers) {
           // item["value"] = this.codigo(item.phoneNumbers[0].value)

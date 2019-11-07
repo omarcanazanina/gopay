@@ -56,5 +56,6 @@ export class IndexPage implements OnInit {
   ingreso(){
     this.route.navigate(['/nombre'])
   }
+  
 
 }

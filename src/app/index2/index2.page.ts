@@ -122,8 +122,6 @@ export class Index2Page implements OnInit {
       });
       //}
     }
-
-
   }
 
   togglePasswordMode() {

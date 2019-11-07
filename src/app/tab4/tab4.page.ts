@@ -27,6 +27,9 @@ export class Tab4Page implements OnInit {
   egreso1: any
   balance = 0
   balance1: any
+  // fecha
+ // fecha=new Date()
+ movimientos
   ngOnInit() {
     this.uu = this.au.pruebita();
     this.au.recuperaundato(this.uu).subscribe(usuario => {
@@ -53,6 +56,12 @@ export class Tab4Page implements OnInit {
       }) 
     })
   
+  }
+
+  fechaChange(fechita){
+    console.log(fechita.detail.value);
+    //console.log(fechita.getUTCMonth());
+    
   }
   async detalleingresoegreso(usu) {
     const modal = await this.modalController.create({

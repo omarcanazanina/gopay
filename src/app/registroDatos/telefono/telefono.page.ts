@@ -16,7 +16,7 @@ export class TelefonoPage implements OnInit {
   contrasena = null
   pin = null
   cajainterna = 0
-  badge = 0
+  estado = 0
   control = 0
   eltoken:any
   public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
@@ -29,7 +29,6 @@ export class TelefonoPage implements OnInit {
     public au: AuthService,
     private loadingController: LoadingController, 
     private fcm: FCM, private nav:NavController,
-
     public platform: Platform
     ) { }
 
@@ -46,7 +45,6 @@ export class TelefonoPage implements OnInit {
 
   
   signIn(phoneNumber: number) {
-
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+591" + phoneNumber;
     const phoneNumber1 = phoneNumber.toString();
@@ -55,6 +53,7 @@ export class TelefonoPage implements OnInit {
         const alert = await this.alertCtrl.create({
           header: 'Ingrese codigo',
           inputs: [{ name: 'confirmationCode', placeholder: 'Codigo de confirmacion' }],
+          backdropDismiss:false,
           buttons: [
             {
               text: 'Cancelar',
@@ -67,7 +66,7 @@ export class TelefonoPage implements OnInit {
                   .then((result) => {
                     let load = this.presentLoading();
                      this.fcm.getToken().then(token => {
-                       this.au.crearcontel(result.user.uid,this.email,this.contrasena,this.pin,this.nombre,phoneNumber1,this.cajainterna,token,this.badge)
+                       this.au.crearcontel(result.user.uid,this.email,this.contrasena,this.pin,this.nombre,phoneNumber1,this.cajainterna,token,this.estado)
                          this.au.creocorrecto();
                          load.then(loading => {
                            loading.dismiss()
@@ -101,7 +100,7 @@ export class TelefonoPage implements OnInit {
   verificar(phoneNumber:number){
     this.fcm.getToken().then(token => {
       const phoneNumberString1 = phoneNumber.toString()
-      this.au.crear(this.email,this.contrasena,this.pin,this.nombre,phoneNumberString1,this.cajainterna,token,this.badge)
+      this.au.crear(this.email,this.contrasena,this.pin,this.nombre,phoneNumberString1,this.cajainterna,token,this.estado)
       //this.au.creocorrecto();
       this.eltoken=token
       //this.au.confirmatelefono(phoneNumberString1)
